@@ -1,9 +1,19 @@
 import './App.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Home from './pages/Home'
-import { UserProvider } from './components/UserContext'
+import { UserProvider, useUser } from './components/UserContext'
+
+const ProtectedRoute = ({ children }) => {
+  const { user } = useUser();
+
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return children;
+};
 
 function App() {
 
@@ -13,7 +23,11 @@ function App() {
         <Routes>
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={
+            // <ProtectedRoute>
+              <Home />
+            // </ProtectedRoute>
+          } />
         </Routes>
       </BrowserRouter>
     </UserProvider>

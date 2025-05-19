@@ -6,7 +6,7 @@ import { useUser } from '../components/UserContext';
 
 const Login = () => {
   const navigate = useNavigate()
-  const {setUser} = useUser()
+  const { setUser } = useUser()
   const [data, setData] = useState({
     name: '',
     email: '',
@@ -32,7 +32,7 @@ const Login = () => {
         { headers: { 'Content-Type': 'application/json' } }
       );
       setUser(response.data.user)
-      console.log(user)
+      console.log(response.data.user)
       // navigate(/dashboard/${encodeURIComponent(data.email)});
       navigate('/');
 
