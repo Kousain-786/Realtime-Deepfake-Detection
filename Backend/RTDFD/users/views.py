@@ -64,3 +64,7 @@ def get_user(request):
                 {'message': str(e)},
                 status=400
             )
+        
+@csrf_exempt
+def predict_deepfake(request):
+    return

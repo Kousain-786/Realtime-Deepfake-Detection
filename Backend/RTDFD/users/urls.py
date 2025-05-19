@@ -4,4 +4,5 @@ from . import views
 urlpatterns = [
     path('signup/', views.create_user),
     path('login/', views.get_user),
+    path('predict/', views.predict_deepfake)
 ]
